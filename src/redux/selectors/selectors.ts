@@ -11,4 +11,17 @@ export const shoppingCartItemAmountSelector = createSelector(
     });
     return totalAmount;
   }
-)
+);
+
+/*
+export const shoppingCartTotalPriceSelector = createSelector(
+  shoppingCartItemsSelector,
+  (items: ShoppingCartItem[]) => {
+    let totalAmount = 0;
+    items.forEach((item) => {
+      totalAmount += item.amount * item.price;
+    });
+    return totalAmount;
+  }
+);
+*/
