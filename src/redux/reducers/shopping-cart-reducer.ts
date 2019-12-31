@@ -1,9 +1,9 @@
 import * as types from '../action-types';
 import _ from 'underscore';
+import { ShoppingCartItem } from "../../types/types";
 
 const initialState = {
-  shoppingCartItems: Array<any>(),
-  shoppingCartItemAmount: 0
+  shoppingCartItems: Array<ShoppingCartItem>(),
 };
 
 const shoppingCartReducer = function(state = initialState, action: any) {
@@ -12,7 +12,7 @@ const shoppingCartReducer = function(state = initialState, action: any) {
       let newShoppingCartItems = state.shoppingCartItems.slice() as any;
       let itemData: any;
       if (newShoppingCartItems) {
-        itemData = _.find(newShoppingCartItems, function(item: any) {
+        itemData = _.find(newShoppingCartItems, (item: any) => {
           return item.phoneId === action.itemId;
         });
       }
@@ -25,12 +25,8 @@ const shoppingCartReducer = function(state = initialState, action: any) {
         newShoppingCartItems.push(itemData);
       }
 
-      // update item amount
-      let newShoppingCartItemAmount = state.shoppingCartItemAmount + 1;
-
       return {
         shoppingCartItems: newShoppingCartItems,
-        shoppingCartItemAmount: newShoppingCartItemAmount
       };
     default:
       return state;

@@ -1,3 +1,8 @@
+export interface ShoppingCartItem {
+  itemId: string;
+  amount: number;
+}
+
 export interface Phone {
   price: number;
   additionalFeatures: string;

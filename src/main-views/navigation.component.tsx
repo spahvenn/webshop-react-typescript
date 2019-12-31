@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Link} from "react-router-dom";
+import { shoppingCartItemAmountSelector } from "../redux/selectors/selectors";
 
 interface OwnProps {
   shoppingCartItemAmount: number;
@@ -58,7 +59,7 @@ const Navigation: React.FC<OwnProps> = (p) => {
 
 const mapStateToProps = function(store: any) {
   return {
-    shoppingCartItemAmount: store.shoppingCartState.shoppingCartItemAmount
+    shoppingCartItemAmount: shoppingCartItemAmountSelector(store)
   };
 };
 
