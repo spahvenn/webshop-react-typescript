@@ -3,7 +3,16 @@ export interface ShoppingCartItem {
   amount: number;
 }
 
-export interface Phone {
+export interface ListItem {
+  age: number;
+  carrier: string;
+  id: string;
+  imageUrl: string;
+  name: string;
+  snippet: string;
+}
+
+export interface Item {
   price: number;
   additionalFeatures: string;
   android: {
