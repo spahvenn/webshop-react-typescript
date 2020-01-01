@@ -1,8 +1,8 @@
 import React from 'react';
-import Navigation from './navigation.component';
-import Footer from './footer.component';
+import Navigation from '../components/navigation.component';
+import Footer from '../components/footer.component';
 
-const Main: React.FC = (p) => {
+const Main: React.FC = p => {
   return (
     <div>
       <Navigation />

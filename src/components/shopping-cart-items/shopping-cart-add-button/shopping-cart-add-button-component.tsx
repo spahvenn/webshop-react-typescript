@@ -9,6 +9,6 @@ const ShoppingCartAddButtonComponent = (p: any) => {
       Add to cart
     </button>
   );
-}
+};
 
-export default ShoppingCartAddButtonComponent
+export default ShoppingCartAddButtonComponent;

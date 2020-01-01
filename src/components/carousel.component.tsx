@@ -1,56 +1,61 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import Axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { Item } from '../types/types';
 
 interface OwnState {
   interval: number;
   pauseOnHover: boolean;
-  phones: any;
+  items: Item[];
 }
 
 class HomeCarousel extends React.PureComponent<{}, OwnState> {
-
   constructor(props: any) {
     super(props);
     this.state = {
       interval: 3500,
       pauseOnHover: false,
-      phones: Array<any>()
+      items: []
     };
   }
 
   componentWillMount() {
-    Axios.get(process.env.PUBLIC_URL+'/phones-data/droid-2-global-by-motorola.json')
-      .then((result: any) => {
-        Axios.get(process.env.PUBLIC_URL+'/phones-data/motorola-atrix-4g.json')
-          .then((result2: any) => {
-            Axios.get(process.env.PUBLIC_URL+'/phones-data/nexus-s.json')
-              .then((result3: any) => {
-                this.setState({
-                  phones: [result.data, result2.data, result3.data],
-                });
-              });
-          });
+    Axios.get(
+      process.env.PUBLIC_URL + '/phones-data/droid-2-global-by-motorola.json'
+    ).then((result: any) => {
+      Axios.get(
+        process.env.PUBLIC_URL + '/phones-data/motorola-atrix-4g.json'
+      ).then((result2: any) => {
+        Axios.get(process.env.PUBLIC_URL + '/phones-data/nexus-s.json').then(
+          (result3: any) => {
+            this.setState({
+              items: [result.data, result2.data, result3.data]
+            });
+          }
+        );
       });
+    });
   }
 
   render() {
-
-    if (!this.state.phones) {
-      return <div>Loading...</div>
+    if (!this.state.items) {
+      return <div>Loading...</div>;
     }
 
-    var carouselImages = this.state.phones.map(function(phone: any, i: number) {
+    var carouselImages = this.state.items.map(function(item: any, i: number) {
       return (
         <Carousel.Item key={i}>
           <div className="text-center">
-            <Link to={"/phones/"+ phone.id}>
-              <img src={process.env.PUBLIC_URL+'/'+phone.images[0]} alt={phone.name} />
+            <Link to={'/phones/' + item.id}>
+              <img
+                src={process.env.PUBLIC_URL + '/' + item.images[0]}
+                alt={item.name}
+              />
             </Link>
           </div>
         </Carousel.Item>
-      )
+      );
     });
 
     return (
@@ -59,11 +64,11 @@ class HomeCarousel extends React.PureComponent<{}, OwnState> {
           interval={this.state.interval}
           pauseOnHover={this.state.pauseOnHover}
         >
-          { carouselImages }
+          {carouselImages}
         </Carousel>
       </div>
-    )
+    );
   }
 }
 
-export default HomeCarousel
+export default HomeCarousel;

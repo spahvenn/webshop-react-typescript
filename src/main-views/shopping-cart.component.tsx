@@ -1,48 +1,52 @@
 import React from 'react';
-import ShoppingCartItems from '../components/shopping-cart/shopping-cart-items.component';
+import ShoppingCartItems from '../components/shopping-cart-items/shopping-cart-items.component';
 import { connect } from 'react-redux';
 import _ from 'underscore';
 import Axios from 'axios';
 import { shoppingCartItemAmountSelector } from '../redux/selectors/selectors';
 import { Link } from 'react-router-dom';
 import shoppingCartUtils from '../utils/shopping-cart-utils';
+import { AmountItem, Item, ShoppingCartItem } from '../types/types';
 
 interface OwnProps {
-  shoppingCartItems: any[];
+  shoppingCartItems: ShoppingCartItem[];
   shoppingCartItemAmount: number;
 }
 
 interface OwnState {
-  phones: any[];
+  items: AmountItem[];
 }
 
 class ShoppingCart extends React.PureComponent<OwnProps, OwnState> {
   componentDidMount() {
     let shoppingCartItems = this.props.shoppingCartItems.slice();
 
-    var itemIds = _.pluck(shoppingCartItems, 'phoneId');
+    var shoppingCartItemIds = _.pluck(shoppingCartItems, 'phoneId');
     let promises: any[] = [];
 
-    _.each(itemIds, function(itemId) {
+    _.each(shoppingCartItemIds, function(itemId) {
       promises.push(
         Axios.get(process.env.PUBLIC_URL + '/phones-data/' + itemId + '.json')
       );
     });
 
     Promise.all(promises).then(responses => {
-      let phones: any[] = [];
+      let items: Item[] = [];
       _.each(responses, response => {
-        phones.push(response.data);
-        let extendedShoppingCartItems = _.filter(phones, phone => {
-          return _.find(shoppingCartItems, item => {
-            if (phone.id === item.phoneId) {
-              phone.amount = item.amount;
-              return true;
+        items.push(response.data);
+        let amountItems: AmountItem[] = _.map(items, item => {
+          const foundShoppingCartItem: ShoppingCartItem = _.find(
+            shoppingCartItems,
+            shoppingCartItem => {
+              return item.id === shoppingCartItem.phoneId;
             }
-          });
+          );
+          return Object.assign({}, item, {
+            amount: foundShoppingCartItem.amount
+          }) as AmountItem;
         });
         this.setState({
-          phones: extendedShoppingCartItems
+          items: amountItems
         });
       });
     });
@@ -53,7 +57,7 @@ class ShoppingCart extends React.PureComponent<OwnProps, OwnState> {
       return <div></div>;
     }
 
-    let totalPrice = shoppingCartUtils.calculateTotalPrice(this.state.phones);
+    let totalPrice = shoppingCartUtils.calculateTotalPrice(this.state.items);
 
     return (
       <div>
@@ -77,7 +81,7 @@ class ShoppingCart extends React.PureComponent<OwnProps, OwnState> {
               Your shopping cart is empty! Browse our{' '}
               <Link to="/phones">products</Link>.
             </div>
-            <ShoppingCartItems shoppingCartItems={this.state.phones} />
+            <ShoppingCartItems shoppingCartItems={this.state.items} />
             {this.props.shoppingCartItemAmount > 0 && (
               <div className="row">
                 <div className="col-md-12">

@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Link} from "react-router-dom";
-import { shoppingCartItemAmountSelector } from "../redux/selectors/selectors";
+import { Link } from 'react-router-dom';
+import { shoppingCartItemAmountSelector } from '../redux/selectors/selectors';
 
 interface OwnProps {
   shoppingCartItemAmount: number;
 }
 
-const Navigation: React.FC<OwnProps> = (p) => {
+const Navigation: React.FC<OwnProps> = p => {
   return (
     <nav className="navbar navbar-inverse navbar-fixed-top">
       <div className="container">
@@ -40,8 +40,13 @@ const Navigation: React.FC<OwnProps> = (p) => {
             <li>
               <Link to="/shopping-cart">
                 Shopping Cart
-                <span className="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                <span id="shopping-cart-item-amount">{ p.shoppingCartItemAmount }</span>
+                <span
+                  className="glyphicon glyphicon-shopping-cart"
+                  aria-hidden="true"
+                ></span>
+                <span id="shopping-cart-item-amount">
+                  {p.shoppingCartItemAmount}
+                </span>
               </Link>
             </li>
             <li>

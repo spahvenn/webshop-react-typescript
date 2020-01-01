@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { ListItem } from '../types/types';
 
 interface OwnState {
-  phones: Array<ListItem>;
+  listItems: Array<ListItem>;
 }
 
 class Phones extends React.PureComponent<{}, OwnState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      phones: []
+      listItems: []
     };
   }
 
@@ -19,7 +19,7 @@ class Phones extends React.PureComponent<{}, OwnState> {
     Axios.get(process.env.PUBLIC_URL + '/phones-data/phones.json').then(
       result => {
         this.setState({
-          phones: result.data
+          listItems: result.data
         });
       }
     );
@@ -29,20 +29,20 @@ class Phones extends React.PureComponent<{}, OwnState> {
     return (
       <div>
         <div className="row">
-          {this.state.phones.map(function(phone: any) {
+          {this.state.listItems.map(listItem => {
             return (
               <div
-                key={phone.id}
+                key={listItem.id}
                 className="thumbnail phone-list-item col-md-3"
               >
-                <Link to={'/phones/' + phone.id} className="thumb">
+                <Link to={'/phones/' + listItem.id} className="thumb">
                   <img
-                    src={process.env.PUBLIC_URL + '/' + phone.imageUrl}
-                    alt={phone.name}
+                    src={process.env.PUBLIC_URL + '/' + listItem.imageUrl}
+                    alt={listItem.name}
                   />
                 </Link>
-                <Link to={'/phones/' + phone.id}>{phone.name}</Link>
-                <p>{phone.snippet}</p>
+                <Link to={'/phones/' + listItem.id}>{listItem.name}</Link>
+                <p>{listItem.snippet}</p>
               </div>
             );
           })}

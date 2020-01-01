@@ -1,5 +1,5 @@
 export interface ShoppingCartItem {
-  itemId: string;
+  phoneId: string;
   amount: number;
 }
 
@@ -62,3 +62,5 @@ export interface Item {
     ram: string;
   };
 }
+
+export type AmountItem = Item & { amount: number };

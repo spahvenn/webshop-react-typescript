@@ -3,9 +3,6 @@ import HomeCarousel from '../components/carousel.component';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
-  /*handleRedirect(){
-    browserHistory.push('/home');
-  }*/
   return (
     <div>
       <div className="row">

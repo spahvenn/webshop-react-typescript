@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import ShoppingCartAddButtonContainer from '../components/shopping-cart-add-button/shopping-cart-add-button';
+import ShoppingCartAddButtonContainer from '../components/shopping-cart-items/shopping-cart-add-button/shopping-cart-add-button';
 import { connect } from 'react-redux';
 import _ from 'underscore';
 
