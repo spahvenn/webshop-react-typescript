@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AmountItem } from '../../types/types';
 
 interface OwnProps {
-  shoppingCartItems: any[];
+  shoppingCartItems: AmountItem[];
 }
 
 const ShoppingCartItems: React.FC<OwnProps> = p => {
