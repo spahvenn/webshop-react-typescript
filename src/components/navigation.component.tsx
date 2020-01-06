@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { shoppingCartItemAmountSelector } from '../redux/selectors/selectors';
+import { RootState } from '../redux/reducers';
 
 interface OwnProps {
   shoppingCartItemAmount: number;
@@ -62,7 +63,7 @@ const Navigation: React.FC<OwnProps> = p => {
   );
 };
 
-const mapStateToProps = function(store: any) {
+const mapStateToProps = (store: RootState) => {
   return {
     shoppingCartItemAmount: shoppingCartItemAmountSelector(store)
   };

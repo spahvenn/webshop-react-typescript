@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import _ from 'underscore';
 import { Item, ShoppingCartItem } from '../types/types';
 import { RouteComponentProps } from 'react-router';
+import { RootState } from '../redux/reducers';
 
 type routeProps = { phoneId: string };
 type OwnProps = { shoppingCartItems: ShoppingCartItem[] };
@@ -167,7 +168,7 @@ const PhoneDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
   );
 };
 
-const mapStateToProps = function(store: any) {
+const mapStateToProps = (store: RootState) => {
   return {
     shoppingCartItems: store.shoppingCartState.shoppingCartItems
   };

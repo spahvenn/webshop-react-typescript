@@ -7,11 +7,13 @@ import { shoppingCartItemAmountSelector } from '../redux/selectors/selectors';
 import { Link } from 'react-router-dom';
 import shoppingCartUtils from '../utils/shopping-cart-utils';
 import { AmountItem, Item, ShoppingCartItem } from '../types/types';
+import { RootState } from '../redux/reducers';
 
 const ShoppingCart: React.FC<mapToStateProps> = p => {
   const [phones, setPhones] = useState<AmountItem[]>([]);
 
   useEffect(() => {
+    // Fetch complete item data from backend matching shopping cart's ids
     let shoppingCartItems = p.shoppingCartItems.slice();
     var shoppingCartItemIds = _.pluck(shoppingCartItems, 'phoneId');
     let promises: any[] = [];
@@ -82,7 +84,7 @@ const ShoppingCart: React.FC<mapToStateProps> = p => {
 
 type mapToStateProps = ReturnType<typeof mapStateToProps>;
 
-const mapStateToProps = function(store: any) {
+const mapStateToProps = (store: RootState) => {
   return {
     shoppingCartItems: store.shoppingCartState.shoppingCartItems,
     shoppingCartItemAmount: shoppingCartItemAmountSelector(store)

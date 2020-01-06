@@ -20,21 +20,18 @@ class HomeCarousel extends React.PureComponent<{}, OwnState> {
     };
   }
 
-  componentWillMount() {
-    Axios.get(
+  async componentWillMount() {
+    const result = await Axios.get(
       process.env.PUBLIC_URL + '/phones-data/droid-2-global-by-motorola.json'
-    ).then((result: any) => {
-      Axios.get(
-        process.env.PUBLIC_URL + '/phones-data/motorola-atrix-4g.json'
-      ).then((result2: any) => {
-        Axios.get(process.env.PUBLIC_URL + '/phones-data/nexus-s.json').then(
-          (result3: any) => {
-            this.setState({
-              items: [result.data, result2.data, result3.data]
-            });
-          }
-        );
-      });
+    );
+    const result2 = await Axios.get(
+      process.env.PUBLIC_URL + '/phones-data/motorola-atrix-4g.json'
+    );
+    const result3 = await Axios.get(
+      process.env.PUBLIC_URL + '/phones-data/nexus-s.json'
+    );
+    this.setState({
+      items: [result.data, result2.data, result3.data]
     });
   }
 
