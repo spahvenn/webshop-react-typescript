@@ -5,7 +5,7 @@ const About: React.FC = () => {
     <div>
       <h1>About</h1>
       <p>
-        Experimenting with React using{' '}
+        Experimenting with React and TypeScript using{' '}
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -28,7 +28,7 @@ const About: React.FC = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/spahvenn/webshop-react"
+          href="https://github.com/spahvenn/webshop-react-typescript"
         >
           Github page
         </a>
