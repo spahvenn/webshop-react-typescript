@@ -1,6 +1,6 @@
-# webshop-react
+# webshop-react-typescript
 
-A webshop prototype built with React. Learning goal is to implement similar webshop as built with angular at [webshop](https://github.com/spahvenn/webshop). This project also uses content of [angular-phonecat](https://github.com/angular/angular-phonecat) to same extend as [webshop](https://github.com/spahvenn/webshop), excluding all angular code.
+A webshop prototype built with React and TypeScript. Assets utilized from [angular-phonecat](https://github.com/angular/angular-phonecat).
 
 Keywords:
 
@@ -21,3 +21,10 @@ Install and run using:
 `npm install`
 
 `npm start`
+
+## Notes
+
+This a prototype that could be improved in several ways, e.g:
+
+- redux-persist to save the redux state to localstorage to enable persistent state after browser tab refresh
+- load complete webshop item data to redux and avoid refetching on later page loads
