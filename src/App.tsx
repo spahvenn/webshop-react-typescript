@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import About from './main-views/about.component';
 import Main from './main-views/main.component';
@@ -12,7 +11,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Main>
-        <Route path="/home" exact component={Home} />
+        <Route path="/" exact component={Home} />
         <Route path="/phones" exact component={Phones} />
         <Route path="/phones/:phoneId" component={PhoneDetail} exact />
         <Route path="/shopping-cart" exact component={ShoppingCart} />
