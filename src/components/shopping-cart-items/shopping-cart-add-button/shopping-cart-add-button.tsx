@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ShoppingCartAddButtonComponent from './shopping-cart-add-button-component';
 import { addItemToShoppingCart } from '../../../redux/action-types';
 
 interface OwnProps {
@@ -10,16 +9,18 @@ interface OwnProps {
 
 const ShoppingCartAddButton: React.FC<OwnProps> = p => {
   return (
-    <ShoppingCartAddButtonComponent
-      addItemToShoppingCart={() => p.addItemToShoppingCart(p.phoneId)}
-    />
+    <button
+      onClick={() => p.addItemToShoppingCart(p.phoneId)}
+      className="add-to-cart-btn btn btn-primary"
+    >
+      Add to cart
+    </button>
   );
 };
 
-// Maps actions to props
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    addItemToShoppingCart: (item: any) => dispatch(addItemToShoppingCart(item))
+    addItemToShoppingCart: (id: string) => dispatch(addItemToShoppingCart(id))
   };
 };
 

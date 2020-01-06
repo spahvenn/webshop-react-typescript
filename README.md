@@ -26,5 +26,6 @@ Install and run using:
 
 This a prototype that could be improved in several ways, e.g:
 
-- redux-persist to save the redux state to localstorage to enable persistent state after browser tab refresh
-- load complete webshop item data to redux and avoid refetching on later page loads
+- Use twitter bootstrap React components to produce HTML instead of using basic HTML syntax with classes- redux-persist to save the redux state to localstorage to enable persistent state after browser tab refresh
+
+* load complete webshop item data to redux and avoid refetching on later page loads
