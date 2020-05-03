@@ -4,7 +4,7 @@ import About from './main-views/about.component';
 import Main from './main-views/main.component';
 import Home from './main-views/home.component';
 import Phones from './main-views/phones.component';
-import PhoneDetail from './main-views/phone-detail.component';
+import PhoneDetail from './main-views/phone-detail/phone-detail.component';
 import ShoppingCart from './main-views/shopping-cart.component';
 
 const App: React.FC = () => {

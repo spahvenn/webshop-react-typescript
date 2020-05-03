@@ -17,7 +17,7 @@ const shoppingCartReducer = (
 ) => {
   switch (action.type) {
     case types.ADD_ITEM_TO_SHOPPING_CART:
-      let newShoppingCartItems = state.shoppingCartItems.slice();
+      let newShoppingCartItems = [...state.shoppingCartItems];
       let shoppingCartItem: ShoppingCartItem;
       if (newShoppingCartItems) {
         shoppingCartItem = _.find(newShoppingCartItems, item => {

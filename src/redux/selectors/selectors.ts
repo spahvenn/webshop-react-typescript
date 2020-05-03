@@ -1,27 +1,15 @@
-import { createSelector } from "reselect";
-import { ShoppingCartItem } from "../../types/types";
+import { createSelector } from 'reselect';
+import { ShoppingCartItem } from '../../types/types';
 
-const shoppingCartItemsSelector = (state: any) => state.shoppingCartState.shoppingCartItems;
+const shoppingCartItemsSelector = (state: any) =>
+  state.shoppingCartState.shoppingCartItems;
 export const shoppingCartItemAmountSelector = createSelector(
   shoppingCartItemsSelector,
   (items: ShoppingCartItem[]) => {
     let totalAmount = 0;
-    items.forEach((item) => {
+    items.forEach(item => {
       totalAmount += item.amount;
     });
     return totalAmount;
   }
 );
-
-/*
-export const shoppingCartTotalPriceSelector = createSelector(
-  shoppingCartItemsSelector,
-  (items: ShoppingCartItem[]) => {
-    let totalAmount = 0;
-    items.forEach((item) => {
-      totalAmount += item.amount * item.price;
-    });
-    return totalAmount;
-  }
-);
-*/
