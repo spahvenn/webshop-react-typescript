@@ -22,7 +22,7 @@ const PhoneDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
       );
       setPhone(result.data);
     })();
-  }, []);
+  }, [phoneId]);
 
   if (!phone) {
     return <div>loading ...</div>;

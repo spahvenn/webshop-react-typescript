@@ -14,7 +14,7 @@ const ShoppingCart: React.FC<mapToStateProps> = p => {
 
   useEffect(() => {
     // Fetch complete item data from backend matching shopping cart's ids
-    let shoppingCartItems = p.shoppingCartItems.slice();
+    let shoppingCartItems = [...p.shoppingCartItems];
     var shoppingCartItemIds = _.pluck(shoppingCartItems, 'phoneId');
     let promises: any[] = [];
     _.each(shoppingCartItemIds, itemId => {
@@ -41,7 +41,7 @@ const ShoppingCart: React.FC<mapToStateProps> = p => {
         setPhones(amountItems);
       });
     })();
-  }, []);
+  }, [p.shoppingCartItems]);
 
   if (phones.length === 0) {
     return <div></div>;
