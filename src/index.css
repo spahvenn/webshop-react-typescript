@@ -34,12 +34,13 @@ body {
 .phone-list-item {
 }
 
-.add-to-cart-btn {
+.add-to-cart-btn,
+.remove-from-cart-btn {
   margin-bottom: 10px;
 }
 
 .bg-info {
-    padding: 15px;
+  padding: 15px;
 }
 
 .phone-images img {
@@ -63,7 +64,7 @@ body {
 
 @media (min-width: 992px) {
   .phone-list-item a > img {
-      height: 120px;
+    height: 120px;
   }
   .phone-list-item {
     height: 300px;
@@ -72,7 +73,7 @@ body {
 
 @media (min-width: 1200px) {
   .phone-list-item a > img {
-      height: 150px;
+    height: 150px;
   }
   .phone-list-item {
     height: 300px;

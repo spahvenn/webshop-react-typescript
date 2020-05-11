@@ -1,7 +1,10 @@
 import * as types from '../action-types';
 import _ from 'underscore';
 import { ShoppingCartItem } from '../../types/types';
-import { ShoppingCartActionTypes } from '../action-types';
+import {
+  addItemToShoppingCart,
+  removeItemFromShoppingCart
+} from '../action-types';
 
 interface ShoppingCartState {
   shoppingCartItems: ShoppingCartItem[];
@@ -11,32 +14,67 @@ const initialState: ShoppingCartState = {
   shoppingCartItems: []
 };
 
-const shoppingCartReducer = (
-  state = initialState,
-  action: ShoppingCartActionTypes
-) => {
+const shoppingCartReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case types.ADD_ITEM_TO_SHOPPING_CART:
-      let newShoppingCartItems = [...state.shoppingCartItems];
-      let shoppingCartItem: ShoppingCartItem;
-      if (newShoppingCartItems) {
-        shoppingCartItem = _.find(newShoppingCartItems, item => {
-          return item.phoneId === action.itemId;
-        });
-      }
-      // increase item amount or add item to shopping cart
-      if (shoppingCartItem) {
-        shoppingCartItem.amount += 1;
-      } else {
-        shoppingCartItem = { phoneId: action.itemId, amount: 1 };
-        newShoppingCartItems.push(shoppingCartItem);
-      }
-      return {
-        shoppingCartItems: newShoppingCartItems
-      };
+      return addShoppingCartItem(state, action);
+    case types.REMOVE_ITEM_FROM_SHOPPING_CART:
+      return removeShoppingCartItem(state, action);
     default:
       return state;
   }
+};
+
+const addShoppingCartItem = (
+  state: ShoppingCartState,
+  action: addItemToShoppingCart
+) => {
+  let newShoppingCartItems = [...state.shoppingCartItems];
+  let shoppingCartItem: ShoppingCartItem;
+  if (newShoppingCartItems) {
+    shoppingCartItem = _.find(newShoppingCartItems, item => {
+      return item.phoneId === action.itemId;
+    });
+  }
+  // increase item amount or add item to shopping cart
+  if (shoppingCartItem) {
+    shoppingCartItem.amount += 1;
+  } else {
+    shoppingCartItem = { phoneId: action.itemId, amount: 1 };
+    newShoppingCartItems.push(shoppingCartItem);
+  }
+  return {
+    shoppingCartItems: newShoppingCartItems
+  };
+};
+
+const removeShoppingCartItem = (
+  state: ShoppingCartState,
+  action: removeItemFromShoppingCart
+) => {
+  let newShoppingCartItems = [...state.shoppingCartItems];
+  let shoppingCartItem: ShoppingCartItem;
+  if (newShoppingCartItems) {
+    shoppingCartItem = _.find(newShoppingCartItems, item => {
+      return item.phoneId === action.itemId;
+    });
+  }
+  // decrease item amount if it exists
+  if (shoppingCartItem) {
+    shoppingCartItem.amount -= 1;
+  } else {
+    return state;
+  }
+
+  if (shoppingCartItem.amount === 0) {
+    newShoppingCartItems = newShoppingCartItems.filter(value => {
+      return value.phoneId !== action.itemId;
+    });
+  }
+
+  return {
+    shoppingCartItems: newShoppingCartItems
+  };
 };
 
 export default shoppingCartReducer;

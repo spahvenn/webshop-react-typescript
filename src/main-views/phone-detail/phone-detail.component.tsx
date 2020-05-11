@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import ShoppingCartAddButtonContainer from '../../components/shopping-cart-items/shopping-cart-add-button/shopping-cart-add-button';
+import ShoppingCartAmountButtonContainer from '../../components/shopping-cart-items/shopping-cart-amount-btn';
 import { connect } from 'react-redux';
 import _ from 'underscore';
 import { Item, ShoppingCartItem } from '../../types/types';
@@ -53,9 +53,14 @@ const PhoneDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
 
           <div>
             <p id="phone-detail-price">Price: {phone.price}</p>
-            <ShoppingCartAddButtonContainer
+            <ShoppingCartAmountButtonContainer
               phoneId={phoneId}
-            ></ShoppingCartAddButtonContainer>
+              btnType={'add'}
+            ></ShoppingCartAmountButtonContainer>
+            <ShoppingCartAmountButtonContainer
+              phoneId={phoneId}
+              btnType={'remove'}
+            ></ShoppingCartAmountButtonContainer>
             <p className="bg-info">Products in cart: {itemAmount}</p>
           </div>
         </div>
