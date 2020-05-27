@@ -12,7 +12,7 @@ interface OwnProps {
   btnType: string;
 }
 
-const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
+export const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
   const className =
     p.btnType === 'add' ? 'add-to-cart-btn' : 'remove-from-cart-btn';
   const onClick =

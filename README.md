@@ -22,6 +22,10 @@ Install and run using:
 
 `npm start`
 
+To run tests:
+
+`npm test`
+
 ## Notes
 
 This a prototype that could be improved in several ways, e.g:
