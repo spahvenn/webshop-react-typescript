@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   addItemToShoppingCart,
   removeItemFromShoppingCart
-} from '../../redux/action-types';
+} from '../../redux/actions';
 
 interface OwnProps {
   addItemToShoppingCart: (id: string) => void;
@@ -31,12 +31,10 @@ export const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    addItemToShoppingCart: (id: string) => dispatch(addItemToShoppingCart(id)),
-    removeItemFromShoppingCart: (id: string) =>
-      dispatch(removeItemFromShoppingCart(id))
-  };
-};
+const mapDispatchToProps = (dispatch: any) => ({
+  addItemToShoppingCart: (id: string) => dispatch(addItemToShoppingCart(id)),
+  removeItemFromShoppingCart: (id: string) =>
+    dispatch(removeItemFromShoppingCart(id))
+});
 
 export default connect(null, mapDispatchToProps)(ShoppingCartAmountBtn);

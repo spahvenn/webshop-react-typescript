@@ -60,10 +60,8 @@ const Navigation: React.FC<OwnProps> = p => {
   );
 };
 
-const mapStateToProps = (store: RootState) => {
-  return {
-    shoppingCartItemAmount: shoppingCartItemAmountSelector(store)
-  };
-};
+const mapStateToProps = (store: RootState) => ({
+  shoppingCartItemAmount: shoppingCartItemAmountSelector(store)
+});
 
 export default connect(mapStateToProps)(Navigation);

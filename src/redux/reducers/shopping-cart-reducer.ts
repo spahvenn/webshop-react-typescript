@@ -1,10 +1,9 @@
-import * as types from '../action-types';
-import _ from 'underscore';
 import { ShoppingCartItem } from '../../types/types';
 import {
+  ActionTypes,
   addItemToShoppingCart,
   removeItemFromShoppingCart
-} from '../action-types';
+} from '../actions';
 
 interface ShoppingCartState {
   shoppingCartItems: ShoppingCartItem[];
@@ -16,9 +15,9 @@ const initialState: ShoppingCartState = {
 
 const shoppingCartReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case types.ADD_ITEM_TO_SHOPPING_CART:
+    case ActionTypes.ADD_ITEM_TO_SHOPPING_CART:
       return addShoppingCartItem(state, action);
-    case types.REMOVE_ITEM_FROM_SHOPPING_CART:
+    case ActionTypes.REMOVE_ITEM_FROM_SHOPPING_CART:
       return removeShoppingCartItem(state, action);
     default:
       return state;
@@ -32,9 +31,9 @@ const addShoppingCartItem = (
   let newShoppingCartItems = [...state.shoppingCartItems];
   let shoppingCartItem: ShoppingCartItem;
   if (newShoppingCartItems) {
-    shoppingCartItem = _.find(newShoppingCartItems, item => {
-      return item.phoneId === action.itemId;
-    });
+    shoppingCartItem = newShoppingCartItems.find(
+      item => item.phoneId === action.itemId
+    );
   }
   // increase item amount or add item to shopping cart
   if (shoppingCartItem) {
@@ -55,9 +54,9 @@ const removeShoppingCartItem = (
   let newShoppingCartItems = [...state.shoppingCartItems];
   let shoppingCartItem: ShoppingCartItem;
   if (newShoppingCartItems) {
-    shoppingCartItem = _.find(newShoppingCartItems, item => {
-      return item.phoneId === action.itemId;
-    });
+    shoppingCartItem = newShoppingCartItems.find(
+      item => item.phoneId === action.itemId
+    );
   }
   // decrease item amount if it exists
   if (shoppingCartItem) {
@@ -67,9 +66,9 @@ const removeShoppingCartItem = (
   }
 
   if (shoppingCartItem.amount === 0) {
-    newShoppingCartItems = newShoppingCartItems.filter(value => {
-      return value.phoneId !== action.itemId;
-    });
+    newShoppingCartItems = newShoppingCartItems.filter(
+      value => value.phoneId !== action.itemId
+    );
   }
 
   return {

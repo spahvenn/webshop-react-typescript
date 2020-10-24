@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import ShoppingCartAmountButtonContainer from '../../components/shopping-cart-items/shopping-cart-amount-btn';
 import { connect } from 'react-redux';
-import _ from 'underscore';
 import { Item, ShoppingCartItem } from '../../types/types';
 import { RouteComponentProps } from 'react-router';
 import { RootState } from '../../redux/reducers';
@@ -30,7 +29,7 @@ const PhoneDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
 
   let itemAmount = 0;
   if (p.shoppingCartItems) {
-    let itemData = _.find(p.shoppingCartItems, item => {
+    let itemData = p.shoppingCartItems.find(item => {
       return item.phoneId === phoneId;
     });
     if (itemData) {
@@ -76,10 +75,8 @@ const PhoneDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
   );
 };
 
-const mapStateToProps = (store: RootState) => {
-  return {
-    shoppingCartItems: store.shoppingCartState.shoppingCartItems
-  };
-};
+const mapStateToProps = (store: RootState) => ({
+  shoppingCartItems: store.shoppingCartState.shoppingCartItems
+});
 
 export default connect(mapStateToProps)(PhoneDetail);

@@ -40,7 +40,7 @@ class HomeCarousel extends React.PureComponent<{}, OwnState> {
       return <div>Loading...</div>;
     }
 
-    var carouselImages = this.state.items.map(function(item: any, i: number) {
+    const carouselImages = this.state.items.map(function(item: any, i: number) {
       return (
         <Carousel.Item key={i}>
           <div className="text-center">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ShoppingCartItems from '../components/shopping-cart-items/shopping-cart-items.component';
 import { connect } from 'react-redux';
-import _ from 'underscore';
 import Axios from 'axios';
 import { shoppingCartItemAmountSelector } from '../redux/selectors/selectors';
 import { Link } from 'react-router-dom';
@@ -15,9 +14,11 @@ const ShoppingCart: React.FC<mapToStateProps> = p => {
   useEffect(() => {
     // Fetch complete item data from backend matching shopping cart's ids
     let shoppingCartItems = [...p.shoppingCartItems];
-    var shoppingCartItemIds = _.pluck(shoppingCartItems, 'phoneId');
-    let promises: any[] = [];
-    _.each(shoppingCartItemIds, itemId => {
+    const shoppingCartItemIds = shoppingCartItems.map(
+      shoppingCartItem => shoppingCartItem.phoneId
+    );
+    const promises: any[] = [];
+    shoppingCartItemIds.forEach(itemId => {
       promises.push(
         Axios.get(process.env.PUBLIC_URL + '/phones-data/' + itemId + '.json')
       );
@@ -25,14 +26,11 @@ const ShoppingCart: React.FC<mapToStateProps> = p => {
     (async () => {
       const responses = await Promise.all(promises);
       let items: Item[] = [];
-      _.each(responses, response => {
+      responses.forEach(response => {
         items.push(response.data);
-        let amountItems: AmountItem[] = _.map(items, item => {
-          const foundShoppingCartItem: ShoppingCartItem = _.find(
-            shoppingCartItems,
-            shoppingCartItem => {
-              return item.id === shoppingCartItem.phoneId;
-            }
+        let amountItems: AmountItem[] = items.map(item => {
+          const foundShoppingCartItem: ShoppingCartItem = shoppingCartItems.find(
+            shoppingCartItem => item.id === shoppingCartItem.phoneId
           );
           return Object.assign({}, item, {
             amount: foundShoppingCartItem.amount
@@ -84,11 +82,9 @@ const ShoppingCart: React.FC<mapToStateProps> = p => {
 
 type mapToStateProps = ReturnType<typeof mapStateToProps>;
 
-const mapStateToProps = (store: RootState) => {
-  return {
-    shoppingCartItems: store.shoppingCartState.shoppingCartItems,
-    shoppingCartItemAmount: shoppingCartItemAmountSelector(store)
-  };
-};
+const mapStateToProps = (store: RootState) => ({
+  shoppingCartItems: store.shoppingCartState.shoppingCartItems,
+  shoppingCartItemAmount: shoppingCartItemAmountSelector(store)
+});
 
 export default connect(mapStateToProps)(ShoppingCart);
