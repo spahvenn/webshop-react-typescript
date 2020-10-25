@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ShoppingCartAmountBtn } from './components/shopping-cart-items/shopping-cart-amount-btn';
+import ShoppingCartAmountBtn from './components/shopping-cart-items/shopping-cart-amount-btn';
 import App from './App';
 
 it('renders without crashing', () => {

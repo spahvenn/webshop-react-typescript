@@ -4,8 +4,8 @@ import About from './main-views/about.component';
 import Main from './main-views/main.component';
 import Home from './main-views/home.component';
 import Phones from './main-views/phones.component';
-import PhoneDetail from './main-views/phone-detail/phone-detail.component';
-import ShoppingCart from './main-views/shopping-cart.component';
+import ShoppingCartContainer from './main-views/shopping-cart.component';
+import PhoneDetailContainer from './main-views/phone-detail.component';
 
 const App: React.FC = () => {
   return (
@@ -13,8 +13,8 @@ const App: React.FC = () => {
       <Main>
         <Route path="/" exact component={Home} />
         <Route path="/phones" exact component={Phones} />
-        <Route path="/phones/:phoneId" component={PhoneDetail} exact />
-        <Route path="/shopping-cart" exact component={ShoppingCart} />
+        <Route path="/phones/:phoneId" component={PhoneDetailContainer} exact />
+        <Route path="/shopping-cart" exact component={ShoppingCartContainer} />
         <Route path="/about" exact component={About} />
       </Main>
     </Router>

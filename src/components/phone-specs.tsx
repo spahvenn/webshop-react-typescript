@@ -1,5 +1,5 @@
 import React from 'react';
-import { Item } from '../../types/types';
+import { Item } from '../types/types';
 
 export const PhoneSpecs: React.FC<{ phone: Item }> = p => {
   const phone = p.phone;

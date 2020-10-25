@@ -4,6 +4,7 @@ import {
   addItemToShoppingCart,
   removeItemFromShoppingCart
 } from '../actions';
+import { createReducer } from '../utils';
 
 interface ShoppingCartState {
   shoppingCartItems: ShoppingCartItem[];
@@ -13,16 +14,17 @@ const initialState: ShoppingCartState = {
   shoppingCartItems: []
 };
 
-const shoppingCartReducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case ActionTypes.ADD_ITEM_TO_SHOPPING_CART:
-      return addShoppingCartItem(state, action);
-    case ActionTypes.REMOVE_ITEM_FROM_SHOPPING_CART:
-      return removeShoppingCartItem(state, action);
-    default:
-      return state;
-  }
-};
+// TODO: ei mene tänne
+const shoppingCartReducer = createReducer(initialState, {
+  [ActionTypes.ADD_ITEM_TO_SHOPPING_CART]: (
+    state: ShoppingCartState,
+    action: addItemToShoppingCart
+  ) => addShoppingCartItem(state, action),
+  [ActionTypes.REMOVE_ITEM_FROM_SHOPPING_CART]: (
+    state: ShoppingCartState,
+    action: removeItemFromShoppingCart
+  ) => removeShoppingCartItem(state, action)
+});
 
 const addShoppingCartItem = (
   state: ShoppingCartState,
@@ -30,11 +32,9 @@ const addShoppingCartItem = (
 ) => {
   let newShoppingCartItems = [...state.shoppingCartItems];
   let shoppingCartItem: ShoppingCartItem;
-  if (newShoppingCartItems) {
-    shoppingCartItem = newShoppingCartItems.find(
-      item => item.phoneId === action.itemId
-    );
-  }
+  shoppingCartItem = newShoppingCartItems.find(
+    item => item.phoneId === action.itemId
+  );
   // increase item amount or add item to shopping cart
   if (shoppingCartItem) {
     shoppingCartItem.amount += 1;
@@ -52,12 +52,10 @@ const removeShoppingCartItem = (
   action: removeItemFromShoppingCart
 ) => {
   let newShoppingCartItems = [...state.shoppingCartItems];
-  let shoppingCartItem: ShoppingCartItem;
-  if (newShoppingCartItems) {
-    shoppingCartItem = newShoppingCartItems.find(
-      item => item.phoneId === action.itemId
-    );
-  }
+  const shoppingCartItem = newShoppingCartItems.find(
+    item => item.phoneId === action.itemId
+  );
+
   // decrease item amount if it exists
   if (shoppingCartItem) {
     shoppingCartItem.amount -= 1;

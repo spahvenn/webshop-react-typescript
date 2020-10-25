@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import ShoppingCartAmountButtonContainer from '../../components/shopping-cart-items/shopping-cart-amount-btn';
+import ShoppingCartAmountBtn from '../components/shopping-cart-items/shopping-cart-amount-btn';
 import { connect } from 'react-redux';
-import { Item, ShoppingCartItem } from '../../types/types';
+import { Item, ShoppingCartItem } from '../types/types';
 import { RouteComponentProps } from 'react-router';
-import { RootState } from '../../redux/reducers';
-import { PhoneSpecs } from './phone-specs';
+import { RootState } from '../redux/reducers';
+import { PhoneSpecs } from '../components/phone-specs';
+import {
+  addItemToShoppingCart,
+  removeItemFromShoppingCart
+} from '../redux/actions';
 
 type routeProps = { phoneId: string };
-type OwnProps = { shoppingCartItems: ShoppingCartItem[] };
+type OwnProps = {
+  shoppingCartItems: ShoppingCartItem[];
+  addItemToShoppingCart?: (id: string) => void;
+  removeItemFromShoppingCart?: (id: string) => void;
+};
 
 const PhoneDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
   const [phone, setPhone] = useState<Item>(null);
@@ -52,14 +60,16 @@ const PhoneDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
 
           <div>
             <p id="phone-detail-price">Price: {phone.price}</p>
-            <ShoppingCartAmountButtonContainer
+            <ShoppingCartAmountBtn
               phoneId={phoneId}
               btnType={'add'}
-            ></ShoppingCartAmountButtonContainer>
-            <ShoppingCartAmountButtonContainer
+              addItemToShoppingCart={p.addItemToShoppingCart}
+            />
+            <ShoppingCartAmountBtn
               phoneId={phoneId}
               btnType={'remove'}
-            ></ShoppingCartAmountButtonContainer>
+              removeItemFromShoppingCart={p.removeItemFromShoppingCart}
+            />
             <p className="bg-info">Products in cart: {itemAmount}</p>
           </div>
         </div>
@@ -75,8 +85,19 @@ const PhoneDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
   );
 };
 
+const mapDispatchToProps = (dispatch: any) => ({
+  addItemToShoppingCart: (id: string) => dispatch(addItemToShoppingCart(id)),
+  removeItemFromShoppingCart: (id: string) =>
+    dispatch(removeItemFromShoppingCart(id))
+});
+
 const mapStateToProps = (store: RootState) => ({
   shoppingCartItems: store.shoppingCartState.shoppingCartItems
 });
 
-export default connect(mapStateToProps)(PhoneDetail);
+const PhoneDetailContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PhoneDetail);
+
+export default PhoneDetailContainer;

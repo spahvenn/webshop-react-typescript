@@ -1,24 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {
-  addItemToShoppingCart,
-  removeItemFromShoppingCart
-} from '../../redux/actions';
 
 interface OwnProps {
-  addItemToShoppingCart: (id: string) => void;
-  removeItemFromShoppingCart: (id: string) => void;
+  addItemToShoppingCart?: (id: string) => void;
+  removeItemFromShoppingCart?: (id: string) => void;
   phoneId: string;
   btnType: string;
 }
 
-export const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
+const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
   const className =
     p.btnType === 'add' ? 'add-to-cart-btn' : 'remove-from-cart-btn';
-  const onClick =
+  const onClick = (id: string) => {
     p.btnType === 'add'
-      ? p.addItemToShoppingCart
-      : p.removeItemFromShoppingCart;
+      ? p.addItemToShoppingCart(id)
+      : p.removeItemFromShoppingCart(id);
+  };
+
   const btnText = p.btnType === 'add' ? '+' : '-';
 
   return (
@@ -31,10 +28,4 @@ export const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-  addItemToShoppingCart: (id: string) => dispatch(addItemToShoppingCart(id)),
-  removeItemFromShoppingCart: (id: string) =>
-    dispatch(removeItemFromShoppingCart(id))
-});
-
-export default connect(null, mapDispatchToProps)(ShoppingCartAmountBtn);
+export default ShoppingCartAmountBtn;
