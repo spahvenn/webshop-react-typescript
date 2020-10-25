@@ -3,6 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Item } from '../types/types';
+import { ROUTES } from '../utils/routes';
 
 interface OwnState {
   interval: number;
@@ -44,7 +45,7 @@ class HomeCarousel extends React.PureComponent<{}, OwnState> {
       return (
         <Carousel.Item key={i}>
           <div className="text-center">
-            <Link to={'/phones/' + item.id}>
+            <Link to={`${ROUTES.PRODUCTS}/${item.id}`}>
               <img
                 src={process.env.PUBLIC_URL + '/' + item.images[0]}
                 alt={item.name}

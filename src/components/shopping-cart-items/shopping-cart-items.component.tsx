@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AmountItem } from '../../types/types';
+import { ROUTES } from '../../utils/routes';
 
 interface OwnProps {
   shoppingCartItems: AmountItem[];
@@ -23,9 +24,8 @@ const ShoppingCartItems: React.FC<OwnProps> = p => {
                 />
               </Link>
             </div>
-
             <div className="col-md-8">
-              <Link to={'phones/' + item.id}>{item.name}</Link>
+              <Link to={`${ROUTES.PRODUCTS}/${item.id}`}>{item.name}</Link>
               <p>{item.description}</p>
             </div>
 

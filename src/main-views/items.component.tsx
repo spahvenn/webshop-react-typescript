@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import { ListItem } from '../types/types';
+import { ROUTES } from '../utils/routes';
 
-const Phones: React.FC = () => {
+const Items: React.FC = () => {
   const [listItems, setListItems] = useState<ListItem[]>([]);
 
   useEffect(() => {
@@ -20,13 +21,15 @@ const Phones: React.FC = () => {
       <div className="row">
         {listItems.map(listItem => (
           <div key={listItem.id} className="thumbnail phone-list-item col-md-3">
-            <Link to={'/phones/' + listItem.id} className="thumb">
+            <Link to={ROUTES.PRODUCTS + '/' + listItem.id} className="thumb">
               <img
                 src={process.env.PUBLIC_URL + '/' + listItem.imageUrl}
                 alt={listItem.name}
               />
             </Link>
-            <Link to={'/phones/' + listItem.id}>{listItem.name}</Link>
+            <Link to={ROUTES.PRODUCTS + '/' + listItem.id}>
+              {listItem.name}
+            </Link>
             <p>{listItem.snippet}</p>
           </div>
         ))}
@@ -35,4 +38,4 @@ const Phones: React.FC = () => {
   );
 };
 
-export default Phones;
+export default Items;

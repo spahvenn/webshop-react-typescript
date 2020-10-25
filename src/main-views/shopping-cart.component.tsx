@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { calculateTotalPrice, getItems } from '../utils/shopping-cart-utils';
 import { AmountItem, ShoppingCartItem } from '../types/types';
 import { RootState } from '../redux/reducers';
+import { ROUTES } from '../utils/routes';
 
 type OwnProps = {
   shoppingCartItems: ShoppingCartItem[];
@@ -23,10 +24,6 @@ const ShoppingCart: React.FC<OwnProps> = p => {
     })();
   }, [p.shoppingCartItems]);
 
-  if (viewItems.length === 0) {
-    return <div></div>;
-  }
-
   let totalPrice = calculateTotalPrice(viewItems);
 
   return (
@@ -43,7 +40,7 @@ const ShoppingCart: React.FC<OwnProps> = p => {
         <div className="col-md-9">
           <div className={p.shoppingCartItemAmount > 0 ? 'hidden' : ''}>
             Your shopping cart is empty! Browse our{' '}
-            <Link to="/phones">products</Link>.
+            <Link to={ROUTES.PRODUCTS}>products</Link>.
           </div>
           <ShoppingCartItems shoppingCartItems={viewItems} />
           {p.shoppingCartItemAmount > 0 && (

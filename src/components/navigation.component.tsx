@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { shoppingCartItemAmountSelector } from '../redux/selectors/selectors';
 import { RootState } from '../redux/reducers';
+import { ROUTES } from '../utils/routes';
 
 interface OwnProps {
   shoppingCartItemAmount: number;
@@ -36,10 +37,10 @@ const Navigation: React.FC<OwnProps> = p => {
         >
           <ul className="nav navbar-nav">
             <li>
-              <Link to="/phones">Phones</Link>
+              <Link to={ROUTES.PRODUCTS}>Products</Link>
             </li>
             <li>
-              <Link to="/shopping-cart">
+              <Link to={ROUTES.SHOPPING_CART}>
                 Shopping Cart
                 <span
                   className="glyphicon glyphicon-shopping-cart"
@@ -51,7 +52,7 @@ const Navigation: React.FC<OwnProps> = p => {
               </Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to={ROUTES.ABOUT}>About</Link>
             </li>
           </ul>
         </div>

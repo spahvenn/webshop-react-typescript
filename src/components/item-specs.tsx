@@ -1,8 +1,8 @@
 import React from 'react';
 import { Item } from '../types/types';
 
-export const PhoneSpecs: React.FC<{ phone: Item }> = p => {
-  const phone = p.phone;
+export const ItemSpecs: React.FC<{ item: Item }> = p => {
+  const item = p.item;
   return (
     <div className="specs">
       <div className="row">
@@ -10,44 +10,44 @@ export const PhoneSpecs: React.FC<{ phone: Item }> = p => {
           <span>Battery</span>
           <dl>
             <dt>Type</dt>
-            <dd>{phone.battery.type}</dd>
+            <dd>{item.battery.type}</dd>
             <dt>Talk Time</dt>
-            <dd>{phone.battery.talkTime}</dd>
+            <dd>{item.battery.talkTime}</dd>
             <dt>Standby time (max)</dt>
-            <dd>{phone.battery.standbyTime}</dd>
+            <dd>{item.battery.standbyTime}</dd>
           </dl>
         </div>
         <div className="col-md-3 col-sm-3 col-xs-6">
           <span>Storage and Memory</span>
           <dl>
             <dt>RAM</dt>
-            <dd>{phone.storage.ram}</dd>
+            <dd>{item.storage.ram}</dd>
             <dt>Internal Storage</dt>
-            <dd>{phone.storage.flash}</dd>
+            <dd>{item.storage.flash}</dd>
           </dl>
         </div>
         <div className="col-md-3 col-sm-3 col-xs-6">
           <span>Connectivity</span>
           <dl>
             <dt>Network Support</dt>
-            <dd>{phone.connectivity.cell}</dd>
+            <dd>{item.connectivity.cell}</dd>
             <dt>WiFi</dt>
-            <dd>{phone.connectivity.wifi}</dd>
+            <dd>{item.connectivity.wifi}</dd>
             <dt>Bluetooth</dt>
-            <dd>{phone.connectivity.bluetooth}</dd>
+            <dd>{item.connectivity.bluetooth}</dd>
             <dt>Infrared</dt>
-            <dd>{phone.connectivity.infrared}</dd>
+            <dd>{item.connectivity.infrared}</dd>
             <dt>GPS</dt>
-            <dd>{phone.connectivity.gps}</dd>
+            <dd>{item.connectivity.gps}</dd>
           </dl>
         </div>
         <div className="col-md-3 col-sm-3 col-xs-6">
           <span>Android</span>
           <dl>
             <dt>OS Version</dt>
-            <dd>{phone.android.os}</dd>
+            <dd>{item.android.os}</dd>
             <dt>UI</dt>
-            <dd>{phone.android.ui}</dd>
+            <dd>{item.android.ui}</dd>
           </dl>
         </div>
       </div>
@@ -57,49 +57,49 @@ export const PhoneSpecs: React.FC<{ phone: Item }> = p => {
           <dl>
             <dt>Dimensions</dt>
             <dt>Weight</dt>
-            <dd>{phone.sizeAndWeight.weight}</dd>
+            <dd>{item.sizeAndWeight.weight}</dd>
           </dl>
         </div>
         <div className="col-md-3 col-sm-3 col-xs-6">
           <span>Display</span>
           <dl>
             <dt>Screen size</dt>
-            <dd>{phone.display.screenSize}</dd>
+            <dd>{item.display.screenSize}</dd>
             <dt>Screen resolution</dt>
-            <dd>{phone.display.screenResolution}</dd>
+            <dd>{item.display.screenResolution}</dd>
             <dt>Touch screen</dt>
-            <dd>{phone.display.touchScreen}</dd>
+            <dd>{item.display.touchScreen}</dd>
           </dl>
         </div>
         <div className="col-md-3 col-sm-3 col-xs-6">
           <span>Hardware</span>
           <dl>
             <dt>CPU</dt>
-            <dd>{phone.hardware.cpu}</dd>
+            <dd>{item.hardware.cpu}</dd>
             <dt>USB</dt>
-            <dd>{phone.hardware.usb}</dd>
+            <dd>{item.hardware.usb}</dd>
             <dt>Audio / headphone jack</dt>
-            <dd>{phone.hardware.audioJack}</dd>
+            <dd>{item.hardware.audioJack}</dd>
             <dt>FM Radio</dt>
-            <dd>{phone.hardware.fmRadio}</dd>
+            <dd>{item.hardware.fmRadio}</dd>
             <dt>Accelerometer</dt>
-            <dd>{phone.hardware.accelerometer}</dd>
+            <dd>{item.hardware.accelerometer}</dd>
           </dl>
         </div>
         <div className="col-md-3 col-sm-3 col-xs-6">
           <span>Camera</span>
           <dl>
             <dt>Primary</dt>
-            <dd>{phone.camera.primary}</dd>
+            <dd>{item.camera.primary}</dd>
             <dt>Features</dt>
-            <dd>{phone.camera.features.join(', ')}</dd>
+            <dd>{item.camera.features.join(', ')}</dd>
           </dl>
         </div>
       </div>
       <div className="row">
         <div className="col-md-3 col-sm-3 col-xs-6 ">
           <span>Additional Features</span>
-          <dd>{phone.additionalFeatures}</dd>
+          <dd>{item.additionalFeatures}</dd>
         </div>
       </div>
     </div>

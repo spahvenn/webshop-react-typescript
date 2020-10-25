@@ -13,7 +13,7 @@ describe('<ShoppingCartAmountBtn />', () => {
       <ShoppingCartAmountBtn
         addItemToShoppingCart={jest.fn()}
         btnType={'add'}
-        phoneId={'1'}
+        itemId={'1'}
         removeItemFromShoppingCart={jest.fn()}
       />
     );
@@ -27,7 +27,7 @@ describe('<ShoppingCartAmountBtn />', () => {
       <ShoppingCartAmountBtn
         addItemToShoppingCart={jest.fn()}
         btnType={'remove'}
-        phoneId={'1'}
+        itemId={'1'}
         removeItemFromShoppingCart={jest.fn()}
       />
     );

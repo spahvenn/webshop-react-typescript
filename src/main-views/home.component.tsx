@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeCarousel from '../components/carousel.component';
 import { Link } from 'react-router-dom';
+import { ROUTES } from '../utils/routes';
 
 const Home: React.FC = () => {
   return (
@@ -21,7 +22,11 @@ const Home: React.FC = () => {
             magna mollis euismod. Donec sed odio dui.{' '}
           </p>
           <p>
-            <Link to="/phones" className="btn btn-primary" role="button">
+            <Link
+              to={ROUTES.PRODUCTS}
+              className="btn btn-primary"
+              role="button"
+            >
               See more »
             </Link>
           </p>

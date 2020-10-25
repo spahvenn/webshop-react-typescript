@@ -3,7 +3,7 @@ import React from 'react';
 interface OwnProps {
   addItemToShoppingCart?: (id: string) => void;
   removeItemFromShoppingCart?: (id: string) => void;
-  phoneId: string;
+  itemId: string;
   btnType: string;
 }
 
@@ -20,7 +20,7 @@ const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
 
   return (
     <button
-      onClick={() => onClick(p.phoneId)}
+      onClick={() => onClick(p.itemId)}
       className={`${className} btn btn-primary`}
     >
       {btnText}

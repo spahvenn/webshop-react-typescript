@@ -37,6 +37,8 @@ body {
 .add-to-cart-btn,
 .remove-from-cart-btn {
   margin-bottom: 10px;
+  width: 50px;
+  margin-right: 4px;
 }
 
 .bg-info {
