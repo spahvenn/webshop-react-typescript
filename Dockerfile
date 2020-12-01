@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . ./
-RUN npm build
+RUN npm run build
 
 # Stage 2 - the production environment
 FROM nginx:1.12-alpine
