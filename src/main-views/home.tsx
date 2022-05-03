@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeCarousel from '../components/carousel.component';
+import HomeCarousel from '../components/carousel';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../utils/routes';
 

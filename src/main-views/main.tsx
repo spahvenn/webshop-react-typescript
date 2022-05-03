@@ -1,6 +1,6 @@
 import React from 'react';
-import Navigation from '../components/navigation.component';
-import Footer from '../components/footer.component';
+import Navigation from '../components/navigation';
+import Footer from '../components/footer';
 
 const Main: React.FC = p => {
   return (

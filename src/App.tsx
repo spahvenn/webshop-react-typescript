@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import About from './main-views/about.component';
-import Main from './main-views/main.component';
-import Home from './main-views/home.component';
-import Items from './main-views/items.component';
-import ShoppingCartContainer from './main-views/shopping-cart.component';
-import PhoneDetailContainer from './main-views/item-detail.component';
+import About from './main-views/about';
+import Main from './main-views/main';
+import Home from './main-views/home';
+import Items from './main-views/items';
+import ShoppingCartContainer from './main-views/shopping-cart';
+import PhoneDetailContainer from './main-views/item-detail';
 import { ROUTES } from './utils/routes';
 
 const App: React.FC = () => {
