@@ -12,7 +12,7 @@ interface OwnProps {
   btnType: string;
 }
 
-export const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
+export const ShoppingCartAmountButton: React.FC<OwnProps> = p => {
   const className =
     p.btnType === 'add' ? 'add-to-cart-btn' : 'remove-from-cart-btn';
   const onClick = (id: string) => {
@@ -39,9 +39,9 @@ const mapDispatchToProps = (dispatch: any) => ({
     dispatch(removeItemFromShoppingCart(id))
 });
 
-const ShippingCartAmountBtnContainer = connect(
+const ShoppingCartAmountButtonContainer = connect(
   null,
   mapDispatchToProps
-)(ShoppingCartAmountBtn);
+)(ShoppingCartAmountButton);
 
-export default ShippingCartAmountBtnContainer;
+export default ShoppingCartAmountButtonContainer;

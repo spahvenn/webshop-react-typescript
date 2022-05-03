@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import ShoppingCartAmountBtnContainer from '../components/shopping-cart-items/shopping-cart-amount-btn';
+import ShoppingCartAmountBtnContainer from '../components/shopping-cart-amount-button/shopping-cart-amount-button';
 import { connect } from 'react-redux';
 import { Item, ShoppingCartItem } from '../types/types';
 import { RouteComponentProps } from 'react-router';

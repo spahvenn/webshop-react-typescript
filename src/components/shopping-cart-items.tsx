@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AmountItem } from '../../types/types';
-import { ROUTES } from '../../utils/routes';
-import ShoppingCartAmountBtnContainer from './shopping-cart-amount-btn';
+import { AmountItem } from '../types/types';
+import { ROUTES } from '../utils/routes';
+import ShoppingCartAmountBtnContainer from './shopping-cart-amount-button/shopping-cart-amount-button';
 
 interface OwnProps {
   shoppingCartItems: AmountItem[];

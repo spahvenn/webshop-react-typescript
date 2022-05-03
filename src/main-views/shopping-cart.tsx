@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ShoppingCartItems from '../components/shopping-cart-items/shopping-cart-items';
+import ShoppingCartItems from '../components/shopping-cart-items';
 import { connect } from 'react-redux';
 import { shoppingCartItemAmountSelector } from '../redux/selectors/selectors';
 import { Link } from 'react-router-dom';
