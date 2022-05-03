@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import ShoppingCartAmountBtn from '../components/shopping-cart-items/shopping-cart-amount-btn';
+import ShoppingCartAmountBtnContainer from '../components/shopping-cart-items/shopping-cart-amount-btn';
 import { connect } from 'react-redux';
 import { Item, ShoppingCartItem } from '../types/types';
 import { RouteComponentProps } from 'react-router';
@@ -60,16 +60,8 @@ const ItemDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
 
           <div>
             <p id="phone-detail-price">Price: {item.price}</p>
-            <ShoppingCartAmountBtn
-              itemId={itemId}
-              btnType={'remove'}
-              removeItemFromShoppingCart={p.removeItemFromShoppingCart}
-            />
-            <ShoppingCartAmountBtn
-              itemId={itemId}
-              btnType={'add'}
-              addItemToShoppingCart={p.addItemToShoppingCart}
-            />
+            <ShoppingCartAmountBtnContainer itemId={itemId} btnType="remove" />
+            <ShoppingCartAmountBtnContainer itemId={itemId} btnType={'add'} />
             {itemAmount > 0 && (
               <p className="bg-info">Products in cart: {itemAmount}</p>
             )}
@@ -87,19 +79,10 @@ const ItemDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-  addItemToShoppingCart: (id: string) => dispatch(addItemToShoppingCart(id)),
-  removeItemFromShoppingCart: (id: string) =>
-    dispatch(removeItemFromShoppingCart(id))
-});
-
 const mapStateToProps = (store: RootState) => ({
   shoppingCartItems: store.shoppingCartState.shoppingCartItems
 });
 
-const PhoneDetailContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ItemDetail);
+const PhoneDetailContainer = connect(mapStateToProps, {})(ItemDetail);
 
 export default PhoneDetailContainer;

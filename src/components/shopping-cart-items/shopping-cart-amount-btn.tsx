@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+  addItemToShoppingCart,
+  removeItemFromShoppingCart
+} from '../../redux/actions';
+import { connect } from 'react-redux';
 
 interface OwnProps {
   addItemToShoppingCart?: (id: string) => void;
@@ -7,7 +12,7 @@ interface OwnProps {
   btnType: string;
 }
 
-const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
+export const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
   const className =
     p.btnType === 'add' ? 'add-to-cart-btn' : 'remove-from-cart-btn';
   const onClick = (id: string) => {
@@ -28,4 +33,15 @@ const ShoppingCartAmountBtn: React.FC<OwnProps> = p => {
   );
 };
 
-export default ShoppingCartAmountBtn;
+const mapDispatchToProps = (dispatch: any) => ({
+  addItemToShoppingCart: (id: string) => dispatch(addItemToShoppingCart(id)),
+  removeItemFromShoppingCart: (id: string) =>
+    dispatch(removeItemFromShoppingCart(id))
+});
+
+const ShippingCartAmountBtnContainer = connect(
+  null,
+  mapDispatchToProps
+)(ShoppingCartAmountBtn);
+
+export default ShippingCartAmountBtnContainer;

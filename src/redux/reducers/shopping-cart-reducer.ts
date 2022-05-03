@@ -14,7 +14,6 @@ const initialState: ShoppingCartState = {
   shoppingCartItems: []
 };
 
-// TODO: ei mene tänne
 const shoppingCartReducer = createReducer(initialState, {
   [ActionTypes.ADD_ITEM_TO_SHOPPING_CART]: (
     state: ShoppingCartState,

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AmountItem } from '../../types/types';
 import { ROUTES } from '../../utils/routes';
+import ShoppingCartAmountBtnContainer from './shopping-cart-amount-btn';
 
 interface OwnProps {
   shoppingCartItems: AmountItem[];
@@ -36,6 +37,16 @@ const ShoppingCartItems: React.FC<OwnProps> = p => {
               <p>
                 Total:{' '}
                 <span className="amount">{item.amount * item.price} €</span>
+              </p>
+              <p>
+                <ShoppingCartAmountBtnContainer
+                  itemId={item.id}
+                  btnType="remove"
+                />
+                <ShoppingCartAmountBtnContainer
+                  itemId={item.id}
+                  btnType="add"
+                />
               </p>
             </div>
           </div>
