@@ -13,16 +13,19 @@ type OwnProps = {
   shoppingCartItemAmount: number;
 };
 
-const ShoppingCart: React.FC<OwnProps> = p => {
+const ShoppingCart: React.FC<OwnProps> = ({
+  shoppingCartItems,
+  shoppingCartItemAmount
+}) => {
   const [viewItems, setViewItems] = useState<AmountItem[]>([]);
 
   useEffect(() => {
     // Fetch complete item data from backend matching shopping cart's item ids
     (async function() {
-      const items = await getItems(p.shoppingCartItems);
+      const items = await getItems(shoppingCartItems);
       setViewItems(items);
     })();
-  }, [p.shoppingCartItems]);
+  }, [shoppingCartItems]);
 
   let totalPrice = calculateTotalPrice(viewItems);
 
@@ -31,19 +34,19 @@ const ShoppingCart: React.FC<OwnProps> = p => {
       <div className="row">
         <div className="col-md-12">
           <h1>Shopping Cart</h1>
-          <p className={p.shoppingCartItemAmount === 0 ? 'hidden' : ''}>
+          <p className={shoppingCartItemAmount === 0 ? 'hidden' : ''}>
             Your shopping cart items:
           </p>
         </div>
       </div>
       <div className="row">
         <div className="col-md-9">
-          <div className={p.shoppingCartItemAmount > 0 ? 'hidden' : ''}>
+          <div className={shoppingCartItemAmount > 0 ? 'hidden' : ''}>
             Your shopping cart is empty! Browse our{' '}
             <Link to={ROUTES.PRODUCTS}>products</Link>.
           </div>
           <ShoppingCartItems shoppingCartItems={viewItems} />
-          {p.shoppingCartItemAmount > 0 && (
+          {shoppingCartItemAmount > 0 && (
             <div className="row">
               <div className="col-md-12">
                 <div className="pull-right" style={{ fontWeight: 'bold' }}>

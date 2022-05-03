@@ -9,7 +9,7 @@ interface OwnProps {
   shoppingCartItemAmount: number;
 }
 
-const Navigation: React.FC<OwnProps> = p => {
+const Navigation: React.FC<OwnProps> = ({ shoppingCartItemAmount }) => {
   return (
     <nav className="navbar navbar-inverse navbar-fixed-top">
       <div className="container">
@@ -47,7 +47,7 @@ const Navigation: React.FC<OwnProps> = p => {
                   aria-hidden="true"
                 ></span>
                 <span id="shopping-cart-item-amount">
-                  {p.shoppingCartItemAmount}
+                  {shoppingCartItemAmount}
                 </span>
               </Link>
             </li>
@@ -65,4 +65,6 @@ const mapStateToProps = (store: RootState) => ({
   shoppingCartItemAmount: shoppingCartItemAmountSelector(store)
 });
 
-export default connect(mapStateToProps)(Navigation);
+const NavigationContainer = connect(mapStateToProps)(Navigation);
+
+export default NavigationContainer;

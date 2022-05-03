@@ -6,21 +6,18 @@ import { Item, ShoppingCartItem } from '../types/types';
 import { RouteComponentProps } from 'react-router';
 import { RootState } from '../redux/reducers';
 import { ItemSpecs } from '../components/item-specs';
-import {
-  addItemToShoppingCart,
-  removeItemFromShoppingCart
-} from '../redux/actions';
 
 type routeProps = { itemId: string };
 type OwnProps = {
   shoppingCartItems: ShoppingCartItem[];
-  addItemToShoppingCart?: (id: string) => void;
-  removeItemFromShoppingCart?: (id: string) => void;
 };
 
-const ItemDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
+const ItemDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = ({
+  shoppingCartItems,
+  match
+}) => {
   const [item, setItem] = useState<Item>(null);
-  const itemId = p.match.params.itemId;
+  const itemId = match.params.itemId;
 
   useEffect(() => {
     (async () => {
@@ -36,8 +33,8 @@ const ItemDetail: React.FC<RouteComponentProps<routeProps> & OwnProps> = p => {
   }
 
   let itemAmount = 0;
-  if (p.shoppingCartItems) {
-    let itemData = p.shoppingCartItems.find(item => {
+  if (shoppingCartItems) {
+    let itemData = shoppingCartItems.find(item => {
       return item.phoneId === itemId;
     });
     if (itemData) {

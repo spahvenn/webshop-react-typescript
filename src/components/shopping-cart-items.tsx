@@ -8,14 +8,14 @@ interface OwnProps {
   shoppingCartItems: AmountItem[];
 }
 
-const ShoppingCartItems: React.FC<OwnProps> = p => {
-  if (!p.shoppingCartItems) {
+const ShoppingCartItems: React.FC<OwnProps> = ({ shoppingCartItems }) => {
+  if (!shoppingCartItems) {
     return <div></div>;
   }
   return (
     <div>
       <div>
-        {p.shoppingCartItems.map(item => (
+        {shoppingCartItems.map(item => (
           <div key={item.id} className="thumbnail row">
             <div className="col-md-2">
               <Link to={'phones/' + item.id}>

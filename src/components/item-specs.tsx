@@ -1,8 +1,7 @@
 import React from 'react';
 import { Item } from '../types/types';
 
-export const ItemSpecs: React.FC<{ item: Item }> = p => {
-  const item = p.item;
+export const ItemSpecs: React.FC<{ item: Item }> = ({ item }) => {
   return (
     <div className="specs">
       <div className="row">
