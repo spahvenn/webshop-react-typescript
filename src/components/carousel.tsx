@@ -6,12 +6,12 @@ import { Item } from '../types/types';
 import { ROUTES } from '../utils/routes';
 
 const HomeCarousel: React.FC = () => {
-  const [carouselImages, setCarouselImages] = useState<Item[]>([]);
+  const [items, setItems] = useState<Item[]>([]);
   const carouselSlideInterval = 3500;
   const carouselPauseOnHover = false;
 
   useEffect(() => {
-    const setSlideImages = async () => {
+    const getItemData = async () => {
       const slide1 = Axios.get(
         process.env.PUBLIC_URL + '/phones-data/droid-2-global-by-motorola.json'
       );
@@ -22,19 +22,16 @@ const HomeCarousel: React.FC = () => {
         process.env.PUBLIC_URL + '/phones-data/nexus-s.json'
       );
       const slides = await Promise.all([slide1, slide2, slide3]);
-      setCarouselImages([slides[0].data, slides[1].data, slides[2].data]);
+      setItems([slides[0].data, slides[1].data, slides[2].data]);
     };
-    setSlideImages();
+    getItemData();
   }, []);
 
-  if (!carouselImages) {
+  if (!items) {
     return <div>Loading...</div>;
   }
 
-  const carouselImageComponents = carouselImages.map(function(
-    item: any,
-    i: number
-  ) {
+  const carouselImageComponents = items.map(function(item: Item, i: number) {
     return (
       <Carousel.Item key={i}>
         <div className="text-center">
