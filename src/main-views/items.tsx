@@ -20,17 +20,19 @@ const Items: React.FC = () => {
     <div>
       <div className="row">
         {listItems.map(listItem => (
-          <div key={listItem.id} className="thumbnail phone-list-item col-md-3">
-            <Link to={ROUTES.PRODUCTS + '/' + listItem.id} className="thumb">
-              <img
-                src={process.env.PUBLIC_URL + '/' + listItem.imageUrl}
-                alt={listItem.name}
-              />
-            </Link>
-            <Link to={ROUTES.PRODUCTS + '/' + listItem.id}>
-              {listItem.name}
-            </Link>
-            <p>{listItem.snippet}</p>
+          <div key={listItem.id} className="phone-list-item col-md-3">
+            <div className="thumbnail">
+              <Link to={ROUTES.PRODUCTS + '/' + listItem.id} className="thumb">
+                <img
+                  src={process.env.PUBLIC_URL + '/' + listItem.imageUrl}
+                  alt={listItem.name}
+                />
+              </Link>
+              <Link to={ROUTES.PRODUCTS + '/' + listItem.id}>
+                {listItem.name}
+              </Link>
+              <p>{listItem.snippet}</p>
+            </div>
           </div>
         ))}
       </div>

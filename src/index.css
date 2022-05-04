@@ -32,6 +32,15 @@ body {
 }
 
 .phone-list-item {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 16px;
+}
+
+.phone-list-item .thumbnail {
+  height: 100%;
+  padding: 8px;
+  overflow: hidden;
 }
 
 .add-to-cart-btn,

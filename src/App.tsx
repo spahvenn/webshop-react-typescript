@@ -5,7 +5,7 @@ import Main from './main-views/main';
 import Home from './main-views/home';
 import Items from './main-views/items';
 import ShoppingCartContainer from './main-views/shopping-cart';
-import PhoneDetailContainer from './main-views/item-detail';
+import ItemDetailContainer from './main-views/item-detail';
 import { ROUTES } from './utils/routes';
 
 const App: React.FC = () => {
@@ -14,7 +14,7 @@ const App: React.FC = () => {
       <Main>
         <Route path="/" exact component={Home} />
         <Route path={ROUTES.PRODUCTS} exact component={Items} />
-        <Route path={ROUTES.PRODUCT} component={PhoneDetailContainer} exact />
+        <Route path={ROUTES.PRODUCT} component={ItemDetailContainer} exact />
         <Route
           path={ROUTES.SHOPPING_CART}
           exact

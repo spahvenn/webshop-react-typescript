@@ -80,6 +80,6 @@ const mapStateToProps = (store: RootState) => ({
   shoppingCartItems: store.shoppingCartState.shoppingCartItems
 });
 
-const PhoneDetailContainer = connect(mapStateToProps, {})(ItemDetail);
+const ItemDetailContainer = connect(mapStateToProps, {})(ItemDetail);
 
-export default PhoneDetailContainer;
+export default ItemDetailContainer;
