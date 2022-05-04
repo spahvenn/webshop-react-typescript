@@ -1,72 +1,64 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Item } from '../types/types';
 import { ROUTES } from '../utils/routes';
 
-interface OwnState {
-  interval: number;
-  pauseOnHover: boolean;
-  items: Item[];
-}
+const HomeCarousel: React.FC = () => {
+  const [carouselImages, setCarouselImages] = useState<Item[]>([]);
+  const carouselSlideInterval = 3500;
+  const carouselPauseOnHover = false;
 
-class HomeCarousel extends React.PureComponent<{}, OwnState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      interval: 3500,
-      pauseOnHover: false,
-      items: []
-    };
-  }
-
-  async componentWillMount() {
-    const result = await Axios.get(
-      process.env.PUBLIC_URL + '/phones-data/droid-2-global-by-motorola.json'
-    );
-    const result2 = await Axios.get(
-      process.env.PUBLIC_URL + '/phones-data/motorola-atrix-4g.json'
-    );
-    const result3 = await Axios.get(
-      process.env.PUBLIC_URL + '/phones-data/nexus-s.json'
-    );
-    this.setState({
-      items: [result.data, result2.data, result3.data]
-    });
-  }
-
-  render() {
-    if (!this.state.items) {
-      return <div>Loading...</div>;
-    }
-
-    const carouselImages = this.state.items.map(function(item: any, i: number) {
-      return (
-        <Carousel.Item key={i}>
-          <div className="text-center">
-            <Link to={`${ROUTES.PRODUCTS}/${item.id}`}>
-              <img
-                src={process.env.PUBLIC_URL + '/' + item.images[0]}
-                alt={item.name}
-              />
-            </Link>
-          </div>
-        </Carousel.Item>
+  useEffect(() => {
+    const setSlideImages = async () => {
+      const slide1 = Axios.get(
+        process.env.PUBLIC_URL + '/phones-data/droid-2-global-by-motorola.json'
       );
-    });
+      const slide2 = Axios.get(
+        process.env.PUBLIC_URL + '/phones-data/motorola-atrix-4g.json'
+      );
+      const slide3 = Axios.get(
+        process.env.PUBLIC_URL + '/phones-data/nexus-s.json'
+      );
+      const slides = await Promise.all([slide1, slide2, slide3]);
+      setCarouselImages([slides[0].data, slides[1].data, slides[2].data]);
+    };
+    setSlideImages();
+  }, []);
 
-    return (
-      <div>
-        <Carousel
-          interval={this.state.interval}
-          pauseOnHover={this.state.pauseOnHover}
-        >
-          {carouselImages}
-        </Carousel>
-      </div>
-    );
+  if (!carouselImages) {
+    return <div>Loading...</div>;
   }
-}
+
+  const carouselImageComponents = carouselImages.map(function(
+    item: any,
+    i: number
+  ) {
+    return (
+      <Carousel.Item key={i}>
+        <div className="text-center">
+          <Link to={`${ROUTES.PRODUCTS}/${item.id}`}>
+            <img
+              src={process.env.PUBLIC_URL + '/' + item.images[0]}
+              alt={item.name}
+            />
+          </Link>
+        </div>
+      </Carousel.Item>
+    );
+  });
+
+  return (
+    <div>
+      <Carousel
+        interval={carouselSlideInterval}
+        pauseOnHover={carouselPauseOnHover}
+      >
+        {carouselImageComponents}
+      </Carousel>
+    </div>
+  );
+};
 
 export default HomeCarousel;
