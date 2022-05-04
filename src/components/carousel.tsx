@@ -31,7 +31,7 @@ const HomeCarousel: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  const carouselImageComponents = items.map(function(item: Item, i: number) {
+  const carouselImageComponents = items.map((item: Item, i: number) => {
     return (
       <Carousel.Item key={i}>
         <div className="text-center">

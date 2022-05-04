@@ -21,7 +21,7 @@ const ShoppingCart: React.FC<OwnProps> = ({
 
   useEffect(() => {
     // Fetch complete item data from backend matching shopping cart's item ids
-    (async function() {
+    (async () => {
       const items = await getItems(shoppingCartItems);
       setViewItems(items);
     })();
